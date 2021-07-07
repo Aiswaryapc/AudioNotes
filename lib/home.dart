@@ -45,44 +45,53 @@ class _HomePageState extends State<HomePage> {
                 Padding( padding: const EdgeInsets.all(30),
                   child: CarouselSlider(
                     items: [
-                      Container(
-                          color: cardcol,
-                          width: 300,
+                      Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Container(
+                            color: cardcol,
+                            width: 300,
 
-                          child: _image == null
-                              ? Text('',style: TextStyle(
-                            color: Colors.black87,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 20,
-                          ))
-                              : Image.file(_image)
+                            child: _image == null
+                                ? Text('',style: TextStyle(
+                              color: Colors.black87,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 20,
+                            ))
+                                : Image.file(_image)
 
+                        ),
                       ),
-                      Container(
-                          color: cardcol,
-                          width: 300,
+                      Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Container(
+                            color: cardcol,
+                            width: 300,
 
-                          child: _image == null
-                              ? Text('',style: TextStyle(
-                            color: Colors.black87,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 20,
-                          ))
-                              : Image.file(_image)
+                            child: _image == null
+                                ? Text('',style: TextStyle(
+                              color: Colors.black87,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 20,
+                            ))
+                                : Image.file(_image)
 
+                        ),
                       ),
-                      Container(
-                          color: cardcol,
-                          width: 300,
+                      Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Container(
+                            color: cardcol,
+                            width: 300,
 
-                          child: _image == null
-                              ? Text('',style: TextStyle(
-                            color: Colors.black87,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 20,
-                          ))
-                              : Image.file(_image)
+                            child: _image == null
+                                ? Text('',style: TextStyle(
+                              color: Colors.black87,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 20,
+                            ))
+                                : Image.file(_image)
 
+                        ),
                       ),
 
 
@@ -90,7 +99,7 @@ class _HomePageState extends State<HomePage> {
                     options: CarouselOptions(
                       enableInfiniteScroll: false,
                       viewportFraction: 0.9,
-                      height: 550,
+                      height: 400,
 
                     ),
                   ),
