@@ -11,12 +11,24 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  File _image ;
+  File _image  ;
 
   final picker = ImagePicker();
 
   Future getImage() async {
     final pickedFile = await picker.getImage(source: ImageSource.camera);
+
+    setState(() {
+      if (pickedFile != null) {
+        _image = File(pickedFile.path);
+      } else {
+        print('No image selected.');
+      }
+    });
+  }
+
+  Future getImage1() async {
+    final pickedFile = await picker.getImage(source: ImageSource.gallery);
 
     setState(() {
       if (pickedFile != null) {
@@ -112,7 +124,17 @@ class _HomePageState extends State<HomePage> {
                             elevation: 6,
                             onPrimary: Colors.white,
                             onSurface: Colors.grey,
-                          ),onPressed:getImage,)))
+                          ),onPressed:getImage,))),
+
+                Align(alignment: Alignment.bottomCenter,
+                    child: Padding( padding: const EdgeInsets.all(20),
+                        child: ElevatedButton(  child : Icon(Icons.attach_file_sharp),
+                          style: ElevatedButton.styleFrom(
+                            primary: barcol ,
+                            elevation: 6,
+                            onPrimary: Colors.white,
+                            onSurface: Colors.grey,
+                          ),onPressed:getImage1,)))
               ]),]);
   }
 }
