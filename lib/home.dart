@@ -11,12 +11,24 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  File _image ;
+  File _image  ;
 
   final picker = ImagePicker();
 
   Future getImage() async {
     final pickedFile = await picker.getImage(source: ImageSource.camera);
+
+    setState(() {
+      if (pickedFile != null) {
+        _image = File(pickedFile.path);
+      } else {
+        print('No image selected.');
+      }
+    });
+  }
+
+  Future getImage1() async {
+    final pickedFile = await picker.getImage(source: ImageSource.gallery);
 
     setState(() {
       if (pickedFile != null) {
@@ -45,44 +57,53 @@ class _HomePageState extends State<HomePage> {
                 Padding( padding: const EdgeInsets.all(30),
                   child: CarouselSlider(
                     items: [
-                      Container(
-                          color: cardcol,
-                          width: 300,
+                      Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Container(
+                            color: cardcol,
+                            width: 300,
 
-                          child: _image == null
-                              ? Text('',style: TextStyle(
-                            color: Colors.black87,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 20,
-                          ))
-                              : Image.file(_image)
+                            child: _image == null
+                                ? Text('',style: TextStyle(
+                              color: Colors.black87,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 20,
+                            ))
+                                : Image.file(_image)
 
+                        ),
                       ),
-                      Container(
-                          color: cardcol,
-                          width: 300,
+                      Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Container(
+                            color: cardcol,
+                            width: 300,
 
-                          child: _image == null
-                              ? Text('',style: TextStyle(
-                            color: Colors.black87,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 20,
-                          ))
-                              : Image.file(_image)
+                            child: _image == null
+                                ? Text('',style: TextStyle(
+                              color: Colors.black87,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 20,
+                            ))
+                                : Image.file(_image)
 
+                        ),
                       ),
-                      Container(
-                          color: cardcol,
-                          width: 300,
+                      Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Container(
+                            color: cardcol,
+                            width: 300,
 
-                          child: _image == null
-                              ? Text('',style: TextStyle(
-                            color: Colors.black87,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 20,
-                          ))
-                              : Image.file(_image)
+                            child: _image == null
+                                ? Text('',style: TextStyle(
+                              color: Colors.black87,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 20,
+                            ))
+                                : Image.file(_image)
 
+                        ),
                       ),
 
 
@@ -90,7 +111,7 @@ class _HomePageState extends State<HomePage> {
                     options: CarouselOptions(
                       enableInfiniteScroll: false,
                       viewportFraction: 0.9,
-                      height: 550,
+                      height: 400,
 
                     ),
                   ),
@@ -103,7 +124,27 @@ class _HomePageState extends State<HomePage> {
                             elevation: 6,
                             onPrimary: Colors.white,
                             onSurface: Colors.grey,
-                          ),onPressed:getImage,)))
+                          ),onPressed:getImage,))),
+
+                Align(alignment: Alignment.bottomCenter,
+                    child: Padding( padding: const EdgeInsets.all(10),
+                        child: ElevatedButton(  child : Icon(Icons.attach_file_sharp),
+                          style: ElevatedButton.styleFrom(
+                            primary: barcol ,
+                            elevation: 6,
+                            onPrimary: Colors.white,
+                            onSurface: Colors.grey,
+                          ),onPressed:getImage1,))),
+                Align(alignment: Alignment.bottomCenter,
+                    child: Padding( padding: const EdgeInsets.all(20),
+                        child: ElevatedButton(  child : Icon(Icons.attach_file_sharp),
+                          style: ElevatedButton.styleFrom(
+                            primary: barcol ,
+                            elevation: 6,
+                            onPrimary: Colors.white,
+                            onSurface: Colors.grey,
+                            minimumSize: Size(double.infinity, 40),
+                          ),onPressed:getImage1,)))
               ]),]);
   }
 }

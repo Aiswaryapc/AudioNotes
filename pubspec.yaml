@@ -33,6 +33,7 @@ dependencies:
 
   image_picker: ^0.7.5+3
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -57,6 +58,7 @@ flutter:
   assets:
     - assets/welcm.jpg
     - assets/home.jpg
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
