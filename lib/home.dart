@@ -1,9 +1,11 @@
+import 'package:firebase_ml_vision/firebase_ml_vision.dart';
 import 'package:flutter/material.dart';
 import 'dart:core';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 import 'app_bar.dart';
+import 'details.dart';
 import 'slide.dart';
 class HomePage extends StatefulWidget {
   @override
@@ -12,6 +14,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   File _image  ;
+  String _text = '';
 
   final picker = ImagePicker();
 
@@ -37,6 +40,33 @@ class _HomePageState extends State<HomePage> {
         print('No image selected.');
       }
     });
+  }
+  Future scanText() async {
+    /*showDialog(
+        context: context,
+        child: Center(
+          child: CircularProgressIndicator(),
+        ));*/
+    final FirebaseVisionImage visionImage =
+    FirebaseVisionImage.fromFile(File(_image.path));
+    final TextRecognizer textRecognizer =
+    FirebaseVision.instance.textRecognizer();
+    final VisionText visionText =
+    await textRecognizer.processImage(visionImage);
+
+    for (TextBlock block in visionText.blocks) {
+      for (TextLine line in block.lines) {
+        _text += line.text + '\n';
+      }
+    }
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => Details(_text)),
+    );
+
+    /*Navigator.of(context).pop();
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => Details(_text)));*/
   }
 
 
@@ -137,16 +167,17 @@ class _HomePageState extends State<HomePage> {
                           ),onPressed:getImage1,))),
                 Align(alignment: Alignment.bottomCenter,
                     child: Padding( padding: const EdgeInsets.all(20),
-                        child: ElevatedButton(  child : Icon(Icons.attach_file_sharp),
+                        child: ElevatedButton(  child : Icon(Icons.scanner),
                           style: ElevatedButton.styleFrom(
                             primary: barcol ,
                             elevation: 6,
                             onPrimary: Colors.white,
                             onSurface: Colors.grey,
                             minimumSize: Size(double.infinity, 40),
-                          ),onPressed:getImage1,)))
+                          ),onPressed:scanText,)))
               ]),]);
   }
 }
 const bgcol = Color(0xFFfbf2fa);
 const barcol = Color(0xFFb8648e);
+

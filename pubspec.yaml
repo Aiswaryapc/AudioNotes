@@ -32,6 +32,8 @@ dependencies:
   carousel_slider: ^3.0.0
 
   image_picker: ^0.7.5+3
+  firebase_ml_vision: ^0.9.10
+  clipboard: ^0.1.2+8
 
 
 dev_dependencies:
